@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hotel Room Booking</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#eee;
+    padding:30px;
+}
+form{
+    width:350px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+input,select,button{
+    width:100%;
+    padding:10px;
+    margin:7px 0;
+    box-sizing:border-box;
+}
+button{
+    background:green;
+    color:white;
+    border:0;
+}
+h2,h3{
+    text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<form id="form">
+
+<h2>Hotel Room Booking</h2>
+
+<input id="name" placeholder="Guest Name" required>
+
+<input id="email" type="email"
+       placeholder="Email" required>
+
+<input id="phone"
+       placeholder="Phone Number"
+       required>
+
+<select id="room" required>
+    <option value="">Select Room</option>
+    <option>Single</option>
+    <option>Double</option>
+    <option>Deluxe</option>
+</select>
+
+<label>Check-in</label>
+<input id="checkin" type="date" required>
+
+<label>Check-out</label>
+<input id="checkout" type="date" required>
+
+<input id="guests"
+       type="number"
+       min="1"
+       placeholder="Number of Guests"
+       required>
+
+<button type="submit">Book Room</button>
+
+<button type="reset">Reset</button>
+
+<h3 id="msg"></h3>
+
+</form>
+
+<script>
+
+document.getElementById("form").onsubmit = function(e){
+
+    e.preventDefault();
+
+    let phone = document.getElementById("phone").value;
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+
+    if(phone.length != 10){
+        alert("Enter valid phone number");
+        return;
+    }
+
+    if(checkout <= checkin){
+        alert("Check-out must be after check-in");
+        return;
+    }
+
+    document.getElementById("msg").innerHTML =
+        "Booking Confirmed!<br>" +
+        "Name: " + document.getElementById("name").value +
+        "<br>Room: " + document.getElementById("room").value +
+        "<br>Guests: " + document.getElementById("guests").value;
+};
+
+</script>
+
+</body>
+</html>
